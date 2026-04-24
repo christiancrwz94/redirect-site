@@ -1015,9 +1015,23 @@
     }
 
     @media(max-width:600px) {
+      .strip {
+        flex-wrap: nowrap;
+        padding: 14px 3%;
+      }
+
       .strip-item {
-        padding: 8px 12px;
-        min-width: 110px;
+        padding: 8px 10px;
+        min-width: 0;
+        flex: 1;
+      }
+
+      .strip-num {
+        font-size: 1.05rem;
+      }
+
+      .strip-lbl {
+        font-size: 0.62rem;
       }
 
       .servicos-grid {
@@ -1437,7 +1451,7 @@
   <footer>
     <div class="footer-top">
       <div>
-        <div class="footer-logo"><img src="logobege.png" alt="Mariana Lyrio Odontologia"></div>
+        <div class="footer-logo"><img src="logopreta.png" alt="Mariana Lyrio Odontologia"></div>
         <p class="footer-desc">Odontologia em Resende-RJ. Referência em alinhadores SouSmile, clareamento, limpeza e
           restaurações. CRO-RJ 054800.</p>
       </div>
