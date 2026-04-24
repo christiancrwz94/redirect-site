@@ -1015,25 +1015,21 @@
     }
 
     @media(max-width:600px) {
-      .hero {
-        min-height: 0;
-        display: block;
-        padding-top: 72px;
+      .hero h1 {
+        font-size: 1.85rem;
       }
 
-      .hero-bg {
-        position: relative;
-        inset: unset;
-        height: 72vw;
-      }
-
-      .hero-gradient {
-        display: none;
+      .hero-sub {
+        font-size: 0.82rem;
+        margin-bottom: 20px;
       }
 
       .hero-content {
-        background: var(--dark);
-        padding: 28px 6% 44px;
+        padding-bottom: 36px;
+      }
+
+      .hero-gradient {
+        background: linear-gradient(to top, rgba(28,28,28,0.97) 0%, rgba(28,28,28,0.92) 38%, rgba(28,28,28,0.15) 62%, transparent 78%);
       }
 
       .strip {
