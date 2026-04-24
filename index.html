@@ -1015,6 +1015,27 @@
     }
 
     @media(max-width:600px) {
+      .hero {
+        min-height: 0;
+        display: block;
+        padding-top: 72px;
+      }
+
+      .hero-bg {
+        position: relative;
+        inset: unset;
+        height: 72vw;
+      }
+
+      .hero-gradient {
+        display: none;
+      }
+
+      .hero-content {
+        background: var(--dark);
+        padding: 28px 6% 44px;
+      }
+
       .strip {
         flex-wrap: nowrap;
         padding: 14px 3%;
