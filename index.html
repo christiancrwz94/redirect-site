@@ -360,8 +360,10 @@
     .svc-tag { position: absolute; left: 12px; font-size: 0.64rem; letter-spacing: 0.14em; font-weight: 500; color: #fff; padding: 6px 11px; border-radius: 50px; background: rgba(20,20,20,0.5); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.22); pointer-events: none; }
     .svc-tag.a { top: 12px; } .svc-tag.d { bottom: 12px; background: rgba(191,79,38,0.78); }
     .svc-count { position: absolute; top: 12px; right: 12px; font-size: 0.74rem; font-weight: 500; color: #fff; padding: 7px 12px; border-radius: 50px; background: rgba(20,20,20,0.55); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.22); pointer-events: none; }
-    .svc-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.3); background: rgba(20,20,20,0.5); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); color: #fff; font-size: 2rem; line-height: 1; padding-bottom: 4px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-    .svc-arrow.p { left: 4px; } .svc-arrow.n { right: 4px; }
+    .svc-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; padding: 0; border-radius: 50%; border: 1px solid rgba(255,255,255,0.28); background: rgba(20,20,20,0.38); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); color: rgba(255,255,255,0.92); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .2s ease; }
+    .svc-arrow:hover { background: rgba(20,20,20,0.6); }
+    .svc-arrow svg { width: 18px; height: 18px; display: block; }
+    .svc-arrow.p { left: 8px; } .svc-arrow.n { right: 8px; }
     .svc-bar { position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: rgba(255,255,255,0.18); }
     .svc-bar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #F2A882, #E8825A); transition: width .25s ease; }
     .svc-body { padding: 26px 26px 20px; }
@@ -1621,8 +1623,9 @@
         }
         const count = document.createElement('span'); count.className = 'svc-count'; count.setAttribute('aria-live', 'polite');
         const bar = document.createElement('div'); bar.className = 'svc-bar'; bar.innerHTML = '<i></i>';
-        const mk = (cls, txt, lab) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'svc-arrow ' + cls; b.textContent = txt; b.setAttribute('aria-label', lab); return b; };
-        const prev = mk('p', '‹', 'Caso anterior'), next = mk('n', '›', 'Próximo caso');
+        const chev = d => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="' + d + '"/></svg>';
+        const mk = (cls, pts, lab) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'svc-arrow ' + cls; b.innerHTML = chev(pts); b.setAttribute('aria-label', lab); return b; };
+        const prev = mk('p', '15 5 8 12 15 19', 'Caso anterior'), next = mk('n', '9 5 16 12 9 19', 'Próximo caso');
         const update = () => {
           const i = Math.min(n, Math.round(track.scrollLeft / track.clientWidth) + 1);
           count.textContent = 'Caso ' + i + ' de ' + n;
