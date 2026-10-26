@@ -1577,7 +1577,7 @@
         for (let i = 1; i <= n; i++) {
           const d = document.createElement('div'); d.className = 'svc-slide';
           const im = document.createElement('img');
-          im.src = 'img/casos/' + slug + '/' + i + '.webp?v=3'; im.width = 800; im.height = 1000;
+          im.src = 'img/casos/' + slug + '/' + i + '.webp?v=4'; im.width = 800; im.height = 1000;
           im.loading = 'lazy'; im.decoding = 'async';
           im.alt = 'Início e fim de ' + label.toLowerCase() + ', caso ' + i + ' de ' + n;
           im.addEventListener('load', () => { if (Math.abs(im.naturalWidth / im.naturalHeight - 0.8) < 0.02) d.insertAdjacentHTML('beforeend', '<span class="svc-tag a">INÍCIO</span><span class="svc-tag d">FIM</span>'); });
