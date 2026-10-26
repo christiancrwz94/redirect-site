@@ -7,12 +7,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dra. Mariana Lyrio · Dentista em Resende-RJ</title>
   <meta name="description"
-    content="Consultório odontológico em Resende-RJ. Alinhadores SouSmile, clareamento, limpeza e restaurações. CRO-RJ 054800.">
+    content="Dentista em Resende-RJ: clareamento dental, limpeza, alinhador invisível SouSmile e restaurações estéticas. Atendimento de urgência. CRO-RJ 054800.">
   <link rel="canonical" href="https://doutoramarianalyrio.com.br/">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:title" content="Dra. Mariana Lyrio · Dentista em Resende-RJ">
-  <meta property="og:description" content="Alinhadores SouSmile, clareamento, limpeza e restaurações em Resende-RJ. Agende pelo WhatsApp.">
+  <meta property="og:description" content="Dentista em Resende-RJ: clareamento dental, limpeza, alinhador invisível SouSmile e restaurações estéticas. Agende pelo WhatsApp.">
   <meta property="og:url" content="https://doutoramarianalyrio.com.br/">
   <meta property="og:image" content="https://doutoramarianalyrio.com.br/img/consultorio-sobre.webp">
   <meta name="twitter:card" content="summary_large_image">
@@ -361,8 +361,8 @@
     .svc-tag { position: absolute; left: 12px; font-size: 0.64rem; letter-spacing: 0.14em; font-weight: 500; color: #fff; padding: 6px 11px; border-radius: 50px; background: rgba(20,20,20,0.5); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.22); pointer-events: none; }
     .svc-tag.a { top: 12px; } .svc-tag.d { bottom: 12px; background: rgba(191,79,38,0.78); }
     .svc-count { position: absolute; top: 12px; right: 12px; font-size: 0.74rem; font-weight: 500; color: #fff; padding: 7px 12px; border-radius: 50px; background: rgba(20,20,20,0.55); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.22); pointer-events: none; }
-    .svc-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.3); background: rgba(20,20,20,0.5); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); color: #fff; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-    .svc-arrow.p { left: 10px; } .svc-arrow.n { right: 10px; }
+    .svc-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.3); background: rgba(20,20,20,0.5); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); color: #fff; font-size: 2rem; line-height: 1; padding-bottom: 4px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .svc-arrow.p { left: 4px; } .svc-arrow.n { right: 4px; }
     .svc-bar { position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: rgba(255,255,255,0.18); }
     .svc-bar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #F2A882, #E8825A); transition: width .25s ease; }
     .svc-body { padding: 22px 26px 28px; }
@@ -590,10 +590,12 @@
     }
 
     .cred-icon {
-      width: 36px;
-      height: 36px;
-      background: var(--cream);
-      border-radius: 10px;
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, rgba(232,130,90,0.16), rgba(232,130,90,0.06));
+      color: var(--orange-btn);
+      border: 1px solid rgba(232,130,90,0.28);
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -668,7 +670,7 @@
     }
 
     .faq-item.open .faq-a {
-      max-height: 220px;
+      max-height: 420px;
       padding-bottom: 18px;
     }
 
@@ -701,8 +703,10 @@
       font-size: 1.1rem;
       width: 40px;
       height: 40px;
-      background: var(--cream);
-      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(232,130,90,0.16), rgba(232,130,90,0.06));
+      color: var(--orange-btn);
+      border: 1px solid rgba(232,130,90,0.28);
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -829,7 +833,7 @@
       font-weight: 400;
     }
 
-    .footer-links a {
+    .footer-links a, .footer-links span {
       display: block;
       font-size: 0.8rem;
       color: rgba(255, 255, 255, 0.35);
@@ -841,6 +845,7 @@
     .footer-links a:hover {
       color: var(--orange);
     }
+    .footer-links span { cursor: default; }
 
     .footer-bottom {
       border-top: 1px solid rgba(255, 255, 255, 0.07);
@@ -1029,10 +1034,73 @@
     .sobre::before { background: linear-gradient(to bottom, #F5F0EB, rgba(255,255,255,0)); }
     .faq::before { background: linear-gradient(to bottom, #FFFFFF, rgba(245,240,235,0)); }
     .localizacao::before { background: linear-gradient(to bottom, #F5F0EB, rgba(255,255,255,0)); }
+    .hero { border-radius: 36px 36px 0 0; }
+    body { background: var(--cream) linear-gradient(#1C1C1C, #1C1C1C) top / 100% 80px no-repeat; }
     .strip { border-radius: 0 0 36px 36px; position: relative; z-index: 1; margin-bottom: -36px; }
     .servicos { padding-top: 116px; }
+    .servicos { padding-bottom: 28px; }
+    .depoimentos { padding-top: 60px; }
+    .depoimentos { padding-bottom: 28px; }
+    .sobre { padding-top: 56px; }
+    .sobre::before { height: 52px; }
+    .sobre { padding-bottom: 28px; }
+    .faq { padding-top: 56px; }
+    .faq::before { height: 52px; }
+    .faq { padding-bottom: 28px; }
+    .localizacao { padding-top: 56px; }
+    .localizacao::before { height: 52px; }
+    footer { padding-top: 4px; background: var(--dark); }
+    .footer-logo img { height: 30px; }
+    .cta-final { padding-bottom: 8px; }
+    .cta-final .s-tag { font-family: 'Playfair Display', serif; font-weight: 400; font-size: clamp(1.8rem, 5vw, 2.6rem); line-height: 1.15; letter-spacing: -0.01em; text-transform: none; color: #fff; margin-bottom: 40px; }
+    .dep-carousel-wrap { margin-right: -5vw; }
+    .dep-carousel { padding-right: 5vw; }
+    .depoimentos::before { height: 56px; }
     .localizacao { padding-bottom: 92px; }
-    .cta-final { position: relative; z-index: 1; margin-top: -36px; border-radius: 36px 36px 0 0; padding-top: 96px; padding-bottom: 110px; background: linear-gradient(180deg, var(--dark) 0, var(--dark) calc(100% - 90px), #111 100%); }
+    .cta-final { position: relative; z-index: 1; margin-top: -36px; border-radius: 36px 36px 0 0; padding-top: 96px; padding-bottom: 20px; background: var(--dark); }
+
+    @media(max-width:600px) {
+      .hero { min-height: calc(100svh - 214px); }
+      .hero-gradient { background: linear-gradient(to bottom, rgba(28,28,28,0) 0, rgba(28,28,28,0) 38vw, rgba(28,28,28,0.05) 48vw, rgba(28,28,28,0.16) 58vw, rgba(28,28,28,0.36) 68vw, rgba(28,28,28,0.6) 78vw, rgba(28,28,28,0.82) 88vw, rgba(28,28,28,0.95) 96vw, #1C1C1C 101vw, #1C1C1C 100%); }
+      .hero-bg img { width: 190%; max-width: none; margin: 0 0 0 -39%; object-fit: contain; object-position: center top; height: auto; opacity: 0.9; }
+    }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+    /* Logo flutuante, sem barra */
+    nav { right: auto; background: none; backdrop-filter: none; -webkit-backdrop-filter: none; border-bottom: 0; box-shadow: none; padding: 10px 5%; pointer-events: none; }
+    nav { transition: opacity .3s ease; }
+    nav.hidden { transform: none; opacity: 0; }
+    nav.scrolled { box-shadow: none; }
+    .nav-logo img { height: 56px; }
+
+    /* Faixa de destaques: 3 colunas iguais, centralizadas */
+    .strip { display: grid; grid-template-columns: repeat(3, 1fr); align-items: stretch; padding: 22px 4% 26px; }
+    .strip-item { display: flex; align-items: flex-start; justify-content: center; text-align: center; padding: 4px 10px; min-width: 0; border-right: 1px solid rgba(255,255,255,0.14); }
+    .strip-item > div { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+    .strip-num { font-family: 'Outfit', sans-serif; font-weight: 500; letter-spacing: 0.01em; font-size: 1.3rem; line-height: 1.15; justify-content: center; }
+    .strip-lbl { font-size: 0.74rem; line-height: 1.4; letter-spacing: 0.03em; color: rgba(255,255,255,0.72); text-wrap: balance; }
+    @media(max-width:600px) {
+      .strip { padding: 20px 3% 24px; }
+      .strip-item { padding: 2px 6px; }
+      .strip-num { font-size: 1.15rem; }
+      .strip-lbl { font-size: 0.72rem; }
+    }
+    .loc-photo { border-radius: 4px 32px 4px 32px; overflow: hidden; margin-bottom: 28px; }
+    .loc-photo img { width: 100%; height: auto; display: block; }
+
+    /* Como chegar dinamico */
+    .cc { display: flex; flex-direction: column; align-items: center; margin: 12px auto 0; }
+    .cc-main { display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 22px 0 10px; border: 0; border-radius: 50px; font-family: 'Outfit', sans-serif; font-size: 0.92rem; font-weight: 500; color: #fff; background: linear-gradient(135deg, #2b2b2b, #111); box-shadow: 0 8px 22px rgba(0,0,0,0.28); transition: transform .2s ease, box-shadow .2s ease; }
+    .cc-ic { position: relative; width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #E8825A, #BF4F26); }
+    .cc-ic::after { content: ''; position: absolute; inset: 0; border-radius: 50%; border: 2px solid rgba(232,130,90,0.7); animation: ccPulse 2s ease-out infinite; }
+    @keyframes ccPulse { 0% { transform: scale(1); opacity: .8; } 100% { transform: scale(1.7); opacity: 0; } }
+    .cc-opts { display: flex; gap: 10px; margin-top: 12px; }
+    .cc-opts .cc-gm { border-color: rgba(66,133,244,0.4); }
+    .cc-opts .cc-wz { border-color: rgba(51,204,255,0.6); }
+    .cc-brand { flex-shrink: 0; }
+    .loc-map { border-radius: 24px; box-shadow: 0 10px 30px rgba(28,28,28,0.1); }
+    .cc-opts a { display: inline-flex; align-items: center; gap: 8px; min-height: 46px; padding: 0 20px 0 14px; border-radius: 50px; border: 1px solid rgba(28,28,28,0.18); background: #fff; color: var(--dark); font-size: 0.88rem; font-weight: 500; text-decoration: none; box-shadow: 0 4px 14px rgba(28,28,28,0.08); }
+    @media (prefers-reduced-motion: reduce) { .cc-ic::after { animation: none; } }
   </style>
 </head>
 
@@ -1043,16 +1111,6 @@
     <div class="nav-logo">
       <img src="logopreta.png" alt="Mariana Lyrio Odontologia">
     </div>
-    <a href="https://wa.me/5524998424278?text=Olá%20Dra.%20Mariana!%20Gostaria%20de%20agendar%20uma%20consulta%20😊"
-      class="nav-cta" target="_blank">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-        <path
-          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-        <path
-          d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.524 5.855L.057 23.882l6.19-1.438A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.371l-.36-.214-3.732.867.936-3.423-.234-.373A9.818 9.818 0 1112 21.818z" />
-      </svg>
-      Agendar agora
-    </a>
   </nav>
 
   <!-- HERO -->
@@ -1064,21 +1122,10 @@
     </div>
     <div class="hero-gradient"></div>
     <div class="hero-content">
-      <div class="hero-tag"><span></span> Dentista em Resende - RJ</div>
-      <h1>O sorriso que você<br>merece, com quem<br><em>realmente cuida.</em></h1>
-      <p class="hero-sub">Alinhadores SouSmile, clareamento, limpeza e restaurações em um consultório que cuida de você
-        com atenção e cuidado de verdade.</p>
+      <div class="hero-tag">Dentista em Resende - RJ</div>
+      <h1 class="sr-only">Dra. Mariana Lyrio, dentista em Resende-RJ</h1>
+      <p class="hero-sub">Alinhadores invisíveis SouSmile, clareamento dental, limpeza e restaurações estéticas, com atendimento de urgência e cuidado de verdade.</p>
       <div class="hero-actions">
-        <a href="https://wa.me/5524998424278?text=Olá%20Dra.%20Mariana!%20Gostaria%20de%20agendar%20uma%20consulta%20😊"
-          class="btn-primary" target="_blank">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-            <path
-              d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.524 5.855L.057 23.882l6.19-1.438A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.371l-.36-.214-3.732.867.936-3.423-.234-.373A9.818 9.818 0 1112 21.818z" />
-          </svg>
-          Quero agendar minha consulta
-        </a>
         <div class="hero-proof">
           <span class="stars">★★★★★</span>
           <span>Google Maps</span>
@@ -1092,19 +1139,19 @@
     <div class="strip-item">
       <div>
         <div class="strip-num">5 Estrelas</div>
-        <div class="strip-lbl">confiança<br>comprovada</div>
+        <div class="strip-lbl">confiança comprovada</div>
       </div>
     </div>
     <div class="strip-item">
       <div>
         <div class="strip-num">SouSmile</div>
-        <div class="strip-lbl">parceiro<br>oficial</div>
+        <div class="strip-lbl">parceiro oficial</div>
       </div>
     </div>
     <div class="strip-item">
       <div>
         <div class="strip-num">3 anos</div>
-        <div class="strip-lbl">Transformando sorrisos<br>em Resende</div>
+        <div class="strip-lbl">Transformando sorrisos em Resende</div>
       </div>
     </div>
   </div>
@@ -1113,8 +1160,8 @@
   <section class="servicos">
     <div class="servicos-header reveal">
       <p class="s-tag">Tratamentos</p>
-      <h2 class="s-title">Cuidado completo<br>para o seu <em>sorriso</em></h2>
-      <p class="s-sub servicos-sub">Casos reais do consultório. Deslize as fotos de cada tratamento para ver o início e o fim.</p>
+      <h2 class="s-title">Casos reais do <em>consultório</em></h2>
+      <p class="s-sub servicos-sub">Deslize as fotos de cada tratamento para ver o início e o fim.</p>
     </div>
     <div class="servicos-grid">
       <article class="svc reveal">
@@ -1166,8 +1213,8 @@
   <section class="depoimentos">
     <div class="dep-header reveal">
       <div>
-        <p class="s-tag">Pacientes felizes</p>
-        <h2 class="s-title">O que dizem <em>sobre nós</em></h2>
+        <p class="s-tag">O que dizem sobre nós</p>
+        <h2 class="s-title">Pacientes <em>reais e felizes</em></h2>
       </div>
       <div>
         <div class="dep-google-stars">★★★★★</div>
@@ -1315,18 +1362,6 @@
   <!-- SOBRE -->
   <section class="sobre">
     <div class="sobre-inner">
-      <div class="sobre-images reveal">
-        <div class="sobre-img-main">
-          <img
-            src="img/consultorio-sobre.webp" width="874" height="779" loading="lazy" decoding="async"
-            alt="Entrada do consultório Mariana Lyrio">
-        </div>
-        <div class="sobre-img-sec">
-          <img
-            src="consultorio.jpg" width="1024" height="768" loading="lazy" decoding="async"
-            alt="Consultório odontológico da Dra. Mariana Lyrio em Resende RJ">
-        </div>
-      </div>
       <div class="reveal reveal-d1">
         <p class="s-tag">Quem somos</p>
         <h2 class="s-title" style="margin-bottom:20px">Feito com fé,<br><em>construído com amor.</em></h2>
@@ -1340,30 +1375,36 @@
           <p>Hoje, a clínica atende pacientes em Resende com foco em atendimento humanizado, excelência nos detalhes e
             resultados que devolvem saúde, autoestima e confiança.</p>
         </div>
+        <div class="sobre-images reveal" style="margin:28px 0; grid-template-columns:1fr">
+          <div class="sobre-img-sec">
+          <img
+            src="consultorio.jpg" width="1024" height="768" loading="lazy" decoding="async"
+            alt="Consultório odontológico da Dra. Mariana Lyrio em Resende RJ">
+        </div>
+      </div>
         <div class="creds">
           <div class="cred-item">
-            <div class="cred-icon">🏆</div>
+            <div class="cred-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></div>
             <div class="cred-text"><strong>Primeiro lugar em Odontologia</strong>Universidade São Francisco</div>
           </div>
           <div class="cred-item">
-            <div class="cred-icon">✨</div>
+            <div class="cred-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.78 4.78 4 4 0 0 1-6.74 0 4 4 0 0 1-4.78-4.78 4 4 0 0 1 0-6.74Z"/><path d="m9 12 2 2 4-4"/></svg></div>
             <div class="cred-text"><strong>Certificada em alinhadores invisíveis</strong>SouSmile Academy</div>
           </div>
           <div class="cred-item">
-            <div class="cred-icon">⭐</div>
-            <div class="cred-text"><strong>Dentista 5 estrelas no Google Maps</strong>Referência em atendimento em
-              Resende</div>
+            <div class="cred-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+            <div class="cred-text"><strong>Referência em atendimento em Resende</strong>Dentista 5 estrelas no Google Maps</div>
           </div>
         </div>
         <a href="https://wa.me/5524998424278?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta%20😊"
-          class="btn-primary" target="_blank" style="margin-top:28px; display:inline-flex;">
+          class="btn-primary" target="_blank" style="margin:28px auto 0; display:flex; width:fit-content;">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
             <path
               d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
             <path
               d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.524 5.855L.057 23.882l6.19-1.438A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.371l-.36-.214-3.732.867.936-3.423-.234-.373A9.818 9.818 0 1112 21.818z" />
           </svg>
-          Falar com a Dra. Mariana
+          Agendar agora
         </a>
       </div>
     </div>
@@ -1379,8 +1420,7 @@
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">Como funciona a primeira consulta? <span class="faq-icon">+</span></button>
         <div class="faq-a">
-          <p>Na primeira consulta fazemos uma avaliação completa do seu sorriso, entendemos seus objetivos e
-            apresentamos as melhores opções de tratamento para você. É uma conversa tranquila, sem pressa.</p>
+          <p>A primeira consulta é um momento dedicado a ouvir você, entender suas queixas e conhecer seus objetivos. Realizamos uma avaliação cuidadosa com o auxílio de uma câmera intraoral e, quando indicado, registros fotográficos, para que você possa visualizar e compreender melhor sua saúde bucal. Ao final, apresentamos as opções de tratamento mais adequadas ao seu caso, com clareza, atenção e cuidado personalizado.</p>
         </div>
       </div>
       <div class="faq-item">
@@ -1420,37 +1460,37 @@
   <section class="localizacao">
     <div class="reveal">
       <p class="s-tag">Onde estamos</p>
-      <h2 class="s-title" style="margin-bottom:28px">Fácil de <em>encontrar</em></h2>
+      <h2 class="s-title" style="margin-bottom:14px">Fácil de <em>encontrar</em></h2>
+      <p class="s-sub" style="margin-bottom:28px; max-width:none">Fica bem em cima da Fátima Torteria do Jardim Jalisco, só entrar pela porta de vidro ao lado e tocar o interfone. Será um prazer receber você!</p>
+    </div>
+    <div class="loc-photo reveal">
+      <img src="img/consultorio-sobre.webp" width="874" height="779" loading="lazy" decoding="async" alt="Entrada do consultório Mariana Lyrio">
     </div>
     <div class="loc-info reveal">
       <div class="loc-item">
-        <div class="loc-ic">📍</div>
+        <div class="loc-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
         <div class="loc-text"><strong>Endereço</strong>Rua Dr. Raphaela Maria Bruno, 70 — Sala 102<br>Jardim Jalisco ·
           Resende-RJ · CEP 27510-096</div>
       </div>
       <div class="loc-item">
-        <div class="loc-ic">🕐</div>
+        <div class="loc-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
         <div class="loc-text"><strong>Horário</strong>Segunda a Sexta: 8h às 18h<br>Sábado: mediante
           agendamento</div>
       </div>
       <div class="loc-item">
-        <div class="loc-ic">📱</div>
+        <div class="loc-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg></div>
         <div class="loc-text"><strong>WhatsApp</strong>(24) 99842-4278</div>
       </div>
-      <a href="https://wa.me/5524998424278?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta%20😊"
-        class="btn-primary" target="_blank" style="width:fit-content">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-          <path
-            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-          <path
-            d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.524 5.855L.057 23.882l6.19-1.438A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.371l-.36-.214-3.732.867.936-3.423-.234-.373A9.818 9.818 0 1112 21.818z" />
-        </svg>
-        Agendar pelo WhatsApp
-      </a>
-      <a href="https://www.google.com/maps/search/?api=1&query=Rua+Dr+Raphaela+Maria+Bruno+70+Jardim+Jalisco+Resende+RJ"
-        class="btn-primary" target="_blank" rel="noopener" style="width:fit-content; background:var(--dark); box-shadow:none; margin-top:12px">
-        📍 Como chegar
-      </a>
+      <div class="cc">
+        <div class="cc-main">
+          <span class="cc-ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg></span>
+          Como chegar
+        </div>
+        <div class="cc-opts">
+          <a href="https://www.google.com/maps/search/?api=1&query=Rua+Dr+Raphaela+Maria+Bruno+70+Jardim+Jalisco+Resende+RJ" target="_blank" rel="noopener" class="cc-gm"><svg class="cc-brand" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><defs><clipPath id="gmp"><path d="M12 1.5a7.5 7.5 0 0 0-7.5 7.5c0 5.4 7.5 13.5 7.5 13.5s7.5-8.100 7.5-13.500A7.5 7.5 0 0 0 12 1.500z"/></clipPath></defs><g clip-path="url(#gmp)"><rect x="0" y="0" width="12" height="9" fill="#34A853"/><rect x="12" y="0" width="12" height="9" fill="#4285F4"/><rect x="0" y="9" width="24" height="3" fill="#FBBC04"/><rect x="0" y="12" width="24" height="12" fill="#EA4335"/></g><circle cx="12" cy="9" r="2.9" fill="#fff"/></svg> Google Maps</a>
+          <a href="https://waze.com/ul?q=Rua%20Dr.%20Raphaela%20Maria%20Bruno%2070%20Resende%20RJ&navigate=yes" target="_blank" rel="noopener" class="cc-wz"><svg class="cc-brand" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="#33CCFF" d="M12 2.5c-4.7 0-8.5 3.600-8.500 8.100 0 1.600.5 3.100 1.300 4.300-.2 1.300-.6 2.600-1.200 3.600 1.500 0 2.800-.4 3.900-1.100 1.400.7 3 1 4.500 1 4.700 0 8.500-3.600 8.500-8.100S16.700 2.500 12 2.500z"/><circle cx="9.200" cy="10" r="1.100" fill="#1C1C1C"/><circle cx="14.800" cy="10" r="1.100" fill="#1C1C1C"/><path d="M8.800 13c1.800 1.700 4.600 1.700 6.400 0" fill="none" stroke="#1C1C1C" stroke-width="1.300" stroke-linecap="round"/><circle cx="8" cy="19" r="1.700" fill="#1C1C1C"/><circle cx="16" cy="19" r="1.700" fill="#1C1C1C"/></svg> Waze</a>
+        </div>
+      </div>
     </div>
     <iframe class="loc-map"
       src="https://maps.google.com/maps?q=Rua+Dr+Raphaela+Maria+Bruno+70+Jardim+Jalisco+Resende+RJ&output=embed&z=16"
@@ -1462,7 +1502,6 @@
   <section class="cta-final">
     <div class="cta-final-inner reveal">
       <p class="s-tag">Pronto para começar?</p>
-      <h2 class="s-title">Seu sorriso começa<br>com <em>uma mensagem.</em></h2>
       <a href="https://wa.me/5524998424278?text=Olá%20Dra.%20Mariana!%20Gostaria%20de%20agendar%20uma%20consulta%20😊"
         class="btn-primary" target="_blank"
         style="display:inline-flex; font-size:0.95rem; padding:17px 32px; margin-top:8px;">
@@ -1474,8 +1513,6 @@
         </svg>
         Quero agendar minha consulta
       </a>
-      <br>
-      <a href="tel:+5524998424278" class="btn-ghost">📞 Ligar agora</a>
     </div>
   </section>
 
@@ -1489,16 +1526,16 @@
       </div>
       <div class="footer-links">
         <h4>Tratamentos</h4>
-        <a href="https://wa.me/5524998424278?text=Ol%C3%A1%20Dra.%20Mariana%21%20Gostaria%20de%20saber%20mais%20sobre%3A%20Alinhador%20invis%C3%ADvel%20SouSmile%20%F0%9F%98%8A" target="_blank" rel="noopener">Alinhador invisível SouSmile</a>
-        <a href="https://wa.me/5524998424278?text=Ol%C3%A1%20Dra.%20Mariana%21%20Gostaria%20de%20saber%20mais%20sobre%3A%20Clareamento%20dental%20%F0%9F%98%8A" target="_blank" rel="noopener">Clareamento dental</a>
-        <a href="https://wa.me/5524998424278?text=Ol%C3%A1%20Dra.%20Mariana%21%20Gostaria%20de%20saber%20mais%20sobre%3A%20Limpeza%20profissional%20%28Profilaxia%29%20%F0%9F%98%8A" target="_blank" rel="noopener">Limpeza profissional (Profilaxia)</a>
-        <a href="https://wa.me/5524998424278?text=Ol%C3%A1%20Dra.%20Mariana%21%20Gostaria%20de%20saber%20mais%20sobre%3A%20Restaura%C3%A7%C3%B5es%20%F0%9F%98%8A" target="_blank" rel="noopener">Restaurações</a>
-        <a href="https://wa.me/5524998424278?text=Ol%C3%A1%20Dra.%20Mariana%21%20Gostaria%20de%20saber%20mais%20sobre%3A%20Extra%C3%A7%C3%B5es%20%F0%9F%98%8A" target="_blank" rel="noopener">Extrações</a>
-        <a href="https://wa.me/5524998424278?text=Ol%C3%A1%20Dra.%20Mariana%21%20Gostaria%20de%20saber%20mais%20sobre%3A%20Aparelho%20fixo%20%F0%9F%98%8A" target="_blank" rel="noopener">Aparelho fixo</a>
-        <a href="https://wa.me/5524998424278?text=Ol%C3%A1%20Dra.%20Mariana%21%20Gostaria%20de%20saber%20mais%20sobre%3A%20Implantes%20dent%C3%A1rios%20%F0%9F%98%8A" target="_blank" rel="noopener">Implantes dentários</a>
-        <a href="https://wa.me/5524998424278?text=Ol%C3%A1%20Dra.%20Mariana%21%20Gostaria%20de%20saber%20mais%20sobre%3A%20Placa%20de%20bruxismo%20%F0%9F%98%8A" target="_blank" rel="noopener">Placa de bruxismo</a>
-        <a href="https://wa.me/5524998424278?text=Ol%C3%A1%20Dra.%20Mariana%21%20Gostaria%20de%20saber%20mais%20sobre%3A%20Dentaduras%20e%20pontes%20%F0%9F%98%8A" target="_blank" rel="noopener">Dentaduras e pontes</a>
-        <a href="https://wa.me/5524998424278?text=Ol%C3%A1%20Dra.%20Mariana%21%20Gostaria%20de%20saber%20mais%20sobre%3A%20Tratamento%20de%20canal%20%F0%9F%98%8A" target="_blank" rel="noopener">Tratamento de canal</a>
+        <span>Alinhador invisível SouSmile</span>
+        <span>Clareamento dental</span>
+        <span>Limpeza profissional (Profilaxia)</span>
+        <span>Restaurações</span>
+        <span>Extrações</span>
+        <span>Aparelho fixo</span>
+        <span>Implantes dentários</span>
+        <span>Placa de bruxismo</span>
+        <span>Dentaduras e pontes</span>
+        <span>Tratamento de canal</span>
       </div>
     </div>
     <div class="footer-bottom">
@@ -1528,8 +1565,7 @@
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
       const current = window.scrollY;
-      if (current > lastScroll && current > 120) nav.classList.add('hidden');
-      else nav.classList.remove('hidden');
+      nav.classList.toggle('hidden', current > 60);
       nav.classList.toggle('scrolled', current > 20);
       lastScroll = current;
     }, { passive: true });
