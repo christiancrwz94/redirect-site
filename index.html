@@ -1015,17 +1015,9 @@
     .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 
     /* Logo flutuante, sem barra */
-    nav { background: none; backdrop-filter: none; -webkit-backdrop-filter: none; border-bottom: 0; box-shadow: none; padding: 10px 5%; pointer-events: none; }
+    nav { right: auto; background: none; backdrop-filter: none; -webkit-backdrop-filter: none; border-bottom: 0; box-shadow: none; padding: 10px 5%; pointer-events: none; }
     nav { transition: opacity .3s ease; }
     nav.hidden { transform: none; opacity: 0; }
-    /* botao de agendar no topo direito: so na capa, some junto com a logo ao rolar */
-    nav .nav-cta { pointer-events: auto; box-shadow: 0 6px 18px rgba(191,79,38,0.35); }
-    nav.hidden .nav-cta { pointer-events: none; }
-    @media(max-width:600px) {
-      /* menor e mais alto para nao cobrir a cabeca da Dra. na foto */
-      nav { align-items: flex-start; }
-      nav .nav-cta { padding: 6px 12px; font-size: 0.7rem; margin-top: 0; }
-    }
     nav.scrolled { box-shadow: none; }
     .nav-logo img { height: 56px; }
 
@@ -1222,7 +1214,6 @@
     <div class="nav-logo">
       <img src="logopreta.png" alt="Mariana Lyrio Odontologia">
     </div>
-    <a href="https://wa.me/5524998424278?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta%20😊" class="nav-cta" target="_blank" rel="noopener">Agendar consulta</a>
   </nav>
 
   <!-- HERO -->
