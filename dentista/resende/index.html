@@ -1061,6 +1061,7 @@
       .hero-proof { flex-direction: column; gap: 4px; margin-top: 0; }
       .hero-proof .stars { font-size: 1.05rem; letter-spacing: 2px; }
       .hero-script { display: block; width: fit-content; font-family: 'Great Vibes', cursive; font-size: 1.76rem; line-height: 1.1; color: #fff; margin-bottom: 8px; }
+      .hero-script, .hero-tag, .hero-actions, .hero-proof { white-space: nowrap; }
       .servicos { padding-bottom: 20px; }
       .servicos-header { margin-bottom: 32px; }
       .servicos-grid { gap: 18px; }
@@ -1080,6 +1081,19 @@
       .cta-final { padding-top: 76px; }
       .cta-final .s-tag { margin-bottom: 28px; }
       .depoimentos::before, .sobre::before, .faq::before, .localizacao::before { height: 36px; }
+    }
+    /* Capa do celular: o padrao aprovado foi feito numa tela de 400px de largura. Abaixo disso
+       (ex.: Samsung S23, 360px) tudo encolhe na mesma proporcao (px / 4 = vw), e a altura da capa
+       acompanha a largura, para a foto e os textos ficarem exatamente no mesmo lugar. */
+    @media(max-width:600px) {
+      .hero { min-height: 138vw; }
+      .hero-content { padding-bottom: min(10px, 2.5vw); column-gap: min(12px, 3vw); }
+      .hero-script { font-size: min(1.76rem, 7.04vw); margin-bottom: min(8px, 2vw); }
+      .hero-tag { font-size: min(0.72rem, 2.88vw); padding: min(5px, 1.25vw) min(11px, 2.75vw); margin-bottom: min(10px, 2.5vw); }
+      .hero-sub { font-size: min(0.8rem, 3.2vw); margin-bottom: min(12px, 3vw); }
+      .hero-proof { font-size: min(0.72rem, 2.88vw); gap: min(4px, 1vw); }
+      .hero-proof .stars { font-size: min(1.05rem, 4.2vw); letter-spacing: min(2px, 0.5vw); }
+      .nav-logo img { height: min(56px, 14vw); }
     }
     @keyframes hintBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
     @media (prefers-reduced-motion: reduce) { .scroll-hint { animation: none; } }
