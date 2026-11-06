@@ -3,8 +3,8 @@
   "short_name": "Dra. Mariana Lyrio",
   "start_url": "/",
   "display": "browser",
-  "background_color": "#0F2A4A",
-  "theme_color": "#0F2A4A",
+  "background_color": "#0A0A0A",
+  "theme_color": "#0A0A0A",
   "icons": [
     { "src": "/favicon-192x192.png", "sizes": "192x192", "type": "image/png" },
     { "src": "/favicon-512x512.png", "sizes": "512x512", "type": "image/png" }
