@@ -25,6 +25,7 @@
   })(window,document,'script','dataLayer','GTM-W5JPZZMC');</script>
   <!-- End Google Tag Manager -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preload" as="image" href="img/hero-mariana.webp" fetchpriority="high">
   <title>Dra. Mariana Lyrio · Dentista em Resende-RJ</title>
   <meta name="description"
     content="Dentista em Resende-RJ: clareamento dental, limpeza, alinhador invisível SouSmile e restaurações estéticas. Atendimento de urgência. CRO-RJ 054800.">
@@ -1292,7 +1293,7 @@
   <!-- NAV -->
   <nav id="nav">
     <div class="nav-logo">
-      <img src="logopreta.png" alt="Mariana Lyrio Odontologia">
+      <img src="logopreta.png" width="500" height="500" alt="Mariana Lyrio Odontologia">
     </div>
   </nav>
 
@@ -1305,7 +1306,7 @@
     </div>
     <div class="hero-gradient"></div>
     <div class="hero-content">
-      <div class="hero-brand" aria-hidden="true"><img src="logopreta.png" alt=""><span>Dra. Mariana Lyrio</span></div>
+      <div class="hero-brand" aria-hidden="true"><img src="logopreta.png" width="500" height="500" alt=""><span>Dra. Mariana Lyrio</span></div>
       <div class="hero-script" aria-hidden="true">Dra. Mariana Lyrio</div>
       <div class="hero-tag">Dentista em Resende - RJ</div>
       <h1 class="sr-only">Dra. Mariana Lyrio, dentista em Resende-RJ</h1>
@@ -1541,7 +1542,7 @@
         <div class="sobre-images reveal" style="margin:28px 0; grid-template-columns:1fr">
           <div class="sobre-img-sec">
           <img
-            src="consultorio.jpg" width="1024" height="768" loading="lazy" decoding="async"
+            src="img/consultorio.webp" width="1024" height="768" loading="lazy" decoding="async"
             alt="Consultório odontológico da Dra. Mariana Lyrio em Resende RJ">
         </div>
       </div>
@@ -1656,7 +1657,7 @@
       </div>
     </div>
     <iframe class="loc-map"
-      src="https://maps.google.com/maps?q=Rua+Dr+Raphaela+Maria+Bruno+70+Jardim+Jalisco+Resende+RJ&output=embed&z=16"
+      data-src="https://maps.google.com/maps?q=Rua+Dr+Raphaela+Maria+Bruno+70+Jardim+Jalisco+Resende+RJ&output=embed&z=16"
       allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
     </iframe>
   </section>
@@ -1679,7 +1680,7 @@
       </a>
       </div>
       <iframe class="cta-map" title="Mapa do consultório"
-        src="https://maps.google.com/maps?q=Rua+Dr+Raphaela+Maria+Bruno+70+Jardim+Jalisco+Resende+RJ&output=embed&z=16"
+        data-src="https://maps.google.com/maps?q=Rua+Dr+Raphaela+Maria+Bruno+70+Jardim+Jalisco+Resende+RJ&output=embed&z=16"
         loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </section>
@@ -1688,7 +1689,7 @@
   <footer>
     <div class="footer-top">
       <div>
-        <div class="footer-logo"><img src="logopreta.png" alt="Mariana Lyrio Odontologia"><span class="footer-name" aria-hidden="true">Dra. Mariana Lyrio</span></div>
+        <div class="footer-logo"><img src="logopreta.png" width="500" height="500" alt="Mariana Lyrio Odontologia"><span class="footer-name" aria-hidden="true">Dra. Mariana Lyrio</span></div>
         <p class="footer-desc">Odontologia em Resende-RJ. Referência em alinhadores SouSmile, clareamento, limpeza e
           restaurações. CRO-RJ 054800.</p>
       </div>
@@ -1785,7 +1786,8 @@
         for (let i = 1; i <= n; i++) {
           const d = document.createElement('div'); d.className = 'svc-slide';
           const im = document.createElement('img');
-          im.src = 'img/casos/' + slug + '/' + i + '.webp?v=4'; im.width = 800; im.height = 1000;
+          const url = 'img/casos/' + slug + '/' + i + '.webp?v=4'; im.width = 800; im.height = 1000;
+          if (i === 1) im.src = url; else im.dataset.src = url; // as outras só ao navegar
           im.loading = 'lazy'; im.decoding = 'async';
           im.alt = 'Início e fim de ' + label.toLowerCase() + ', caso ' + i + ' de ' + n;
           im.addEventListener('load', () => { if (Math.abs(im.naturalWidth / im.naturalHeight - 0.8) < 0.02) d.insertAdjacentHTML('beforeend', '<span class="svc-tag a">INÍCIO</span><span class="svc-tag d">FIM</span>'); });
@@ -1801,7 +1803,13 @@
           count.textContent = 'Caso ' + i + ' de ' + n;
           bar.firstChild.style.width = (i / n * 100) + '%';
         };
+        // Carrega a foto atual e as vizinhas conforme a pessoa navega; a 2ª quando o carrossel chega perto da tela
+        const carrega = k => { const s = track.children[k], im = s && s.querySelector('img[data-src]'); if (im) { im.src = im.dataset.src; im.removeAttribute('data-src'); } };
+        const vizinhas = () => { const i = Math.round(track.scrollLeft / track.clientWidth); for (let k = i - 1; k <= i + 2; k++) carrega(k); };
+        if ('IntersectionObserver' in window) new IntersectionObserver((es, o) => { if (es.some(e => e.isIntersecting)) { carrega(1); o.disconnect(); } }, { rootMargin: '200px 0px' }).observe(box);
+        else for (let k = 1; k < n; k++) carrega(k);
         track.addEventListener('scroll', update, { passive: true });
+        track.addEventListener('scroll', vizinhas, { passive: true });
         prev.addEventListener('click', () => track.scrollBy({ left: -track.clientWidth, behavior: 'smooth' }));
         next.addEventListener('click', () => track.scrollBy({ left: track.clientWidth, behavior: 'smooth' }));
         track.addEventListener('click', e => { if (e.target.tagName === 'IMG') { lbImg.src = e.target.src; lbImg.alt = e.target.alt; lb.classList.add('open'); } });
@@ -1809,6 +1817,14 @@
       });
       lb.addEventListener('click', () => lb.classList.remove('open'));
       document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('open'); });
+    })();
+    // Mapas do Google: só carregam quando chegam perto da tela (deixa a abertura do site mais leve)
+    (function () {
+      const mapas = document.querySelectorAll('iframe[data-src]');
+      const liga = f => { if (f.dataset.src) { f.src = f.dataset.src; f.removeAttribute('data-src'); } };
+      if (!('IntersectionObserver' in window)) { mapas.forEach(liga); return; }
+      const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { liga(e.target); io.unobserve(e.target); } }), { rootMargin: '600px 0px' });
+      mapas.forEach(f => io.observe(f));
     })();
     // Barra de rolagem flutuante
     (function () {
