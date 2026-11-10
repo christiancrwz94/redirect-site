@@ -1,0 +1,4 @@
+# Planilhas com dados reais de pacientes NUNCA vão para o GitHub (nem para o site).
+ads-conversoes/*.csv
+!ads-conversoes/entrada_modelo.csv
+__pycache__/

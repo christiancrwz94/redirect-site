@@ -1,0 +1,6 @@
+# Configuração do GitHub Pages. Pastas que NÃO podem ser publicadas no site:
+# - ads-conversoes: ferramenta interna de conversões offline do Google Ads.
+# (Pastas que começam com "_" e ".", como _ferramentas e .github, já ficam de fora.)
+exclude:
+  - ads-conversoes
+  - README.md

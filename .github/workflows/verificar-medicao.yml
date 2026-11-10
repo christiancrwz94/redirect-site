@@ -42,6 +42,10 @@ jobs:
             else
               echo "::warning::não foi possível baixar /js/medicao.js"; erros=1
             fi
+            # A pasta interna de conversões nunca pode estar acessível no site
+            local codigo
+            codigo=$(curl -s -o /dev/null -w '%{http_code}' --max-time 30 "$SITE/ads-conversoes/entrada_modelo.csv?verificacao=$n")
+            [ "$codigo" = "404" ] || { echo "::warning::/ads-conversoes/ está publicada no site (código $codigo)"; erros=1; }
             return $erros
           }
           # Algumas tentativas, para dar tempo ao cache do GitHub Pages (até 10 minutos).

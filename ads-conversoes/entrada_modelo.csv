@@ -1,0 +1,4 @@
+nome,telefone,data_hora,status,valor
+Paciente Exemplo 1,(24) 99999-0001,03/11/2026 14:30,agendou,
+Paciente Exemplo 2,24 9 9999-0002,04/11/2026 09:00,compareceu,"250,00"
+Paciente Exemplo 3,+55 24 99999-0003,2026-11-05 16:15,compareceu,180
