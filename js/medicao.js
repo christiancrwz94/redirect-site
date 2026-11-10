@@ -154,7 +154,7 @@
     if (!aviso) {
       var css = d.createElement('style');
       css.textContent =
-        '.ml-cookies{position:fixed;z-index:950;left:24px;bottom:calc(var(--ml-barra,0px) + 16px);width:min(520px,calc(100% - 48px));' +
+        '.ml-cookies{position:fixed;z-index:950;left:24px;bottom:16px;width:min(520px,calc(100% - 48px));' +
         'background:#1C1C1C;color:rgba(255,255,255,.88);border-radius:18px;padding:16px 18px;box-shadow:0 10px 34px rgba(0,0,0,.28);' +
         "font-family:'Outfit',sans-serif;font-size:.84rem;line-height:1.5}" +
         '.ml-cookies[hidden]{display:none}' +
@@ -162,7 +162,7 @@
         '.ml-cookies-btns{display:flex;gap:10px}' +
         ".ml-cookies-btns button{flex:1;min-height:44px;border-radius:50px;border:1px solid rgba(255,255,255,.5);background:transparent;color:#fff;font:500 .86rem 'Outfit',sans-serif;cursor:pointer}" +
         '.ml-cookies-btns button:hover,.ml-cookies-btns button:focus-visible{background:rgba(255,255,255,.12)}' +
-        '@media(max-width:768px){.ml-cookies{left:12px;width:calc(100% - 24px);bottom:calc(var(--ml-barra,0px) + 10px);padding:14px 14px 12px;font-size:.8rem}}';
+        '@media(max-width:768px){.ml-cookies{left:12px;width:calc(100% - 24px);bottom:10px;padding:14px 14px 12px;font-size:.8rem}html.ml-cookies-aberto .wa-float{bottom:calc(var(--ml-cookies-h,0px) + 22px)}}';
       d.head.appendChild(css);
       aviso = d.createElement('div');
       aviso.className = 'ml-cookies';
@@ -177,10 +177,14 @@
         if (!b) return;
         aplicaEscolha(b.getAttribute('data-consent'));
         aviso.hidden = true;
+        d.documentElement.classList.remove('ml-cookies-aberto');
       });
       d.body.appendChild(aviso);
     }
     aviso.hidden = false;
+    // No celular o aviso ocupa a largura toda: sobe a bolinha do WhatsApp para não ficar coberta
+    d.documentElement.style.setProperty('--ml-cookies-h', aviso.offsetHeight + 'px');
+    d.documentElement.classList.add('ml-cookies-aberto');
   }
   d.addEventListener('click', function (e) {
     var a = e.target && e.target.closest ? e.target.closest('[data-cookie-prefs]') : null;

@@ -1292,16 +1292,6 @@
     @keyframes estrelasBrilho { 0%, 60% { background-position: 100% 0; } 90%, 100% { background-position: 0 0; } }
     @media (prefers-reduced-motion: reduce) { .btn-primary, .btn-primary::after, .nav-logo::after, .nav-logo img, .hero-proof .stars { animation: none; } }
 
-    /* Barra fixa de agendamento: só no celular (até 768px), no lugar do botão redondo */
-    .barra-agendar { display: none; }
-    @media(max-width:768px) {
-      :root { --ml-barra: calc(72px + env(safe-area-inset-bottom, 0px)); }
-      body { padding-bottom: var(--ml-barra); }
-      .wa-float { display: none; }
-      .barra-agendar { display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 900; padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px)); background: rgba(245, 240, 235, 0.94); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-top: 1px solid var(--border); }
-      .barra-agendar-btn { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; border-radius: 50px; background: #25D366; color: #fff; font-family: 'Outfit', sans-serif; font-size: 0.98rem; font-weight: 500; text-decoration: none; box-shadow: 0 4px 18px rgba(37, 211, 102, 0.35); }
-      .barra-agendar-btn:active { transform: scale(0.98); }
-    }
   </style>
 </head>
 
@@ -1738,20 +1728,6 @@
     </div>
   </footer>
 
-  <!-- BARRA FIXA DE AGENDAMENTO (celular, até 768px) -->
-  <div class="barra-agendar">
-    <a href="https://wa.me/5524998424278?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta%20😊" target="_blank" rel="noopener"
-      class="barra-agendar-btn" data-botao="barra_fixa_mobile">
-    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
-      <path
-        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-      <path
-        d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.524 5.855L.057 23.882l6.19-1.438A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.371l-.36-.214-3.732.867.936-3.423-.234-.373A9.818 9.818 0 1112 21.818z" />
-    </svg>
-    Agendar pelo WhatsApp
-    </a>
-  </div>
-
   <!-- WHATSAPP FLOAT -->
   <a href="https://wa.me/5524998424278?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta%20😊" class="wa-float"
     id="waFloat" target="_blank" rel="noopener" title="Falar pelo WhatsApp" aria-label="Falar pelo WhatsApp">
@@ -1896,7 +1872,7 @@
     })();
   </script>
   <!-- Medição (Google Tag Manager) e texto do WhatsApp conforme a origem da visita -->
-  <script src="/js/medicao.js?v=2" defer></script>
+  <script src="/js/medicao.js?v=3" defer></script>
 </body>
 
 </html>
