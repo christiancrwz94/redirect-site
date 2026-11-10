@@ -4,6 +4,19 @@
 <head>
   <base href="https://doutoramarianalyrio.com.br/">
   <meta charset="UTF-8">
+  <!-- Consentimento de cookies (Consent Mode v2): precisa vir ANTES do Google Tag Manager -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'granted', wait_for_update: 500 });
+    gtag('set', 'url_passthrough', true);
+    (function () {
+      try {
+        var c = localStorage.getItem('ml_consent');
+        if (c === 'granted' || c === 'denied') gtag('consent', 'update', { ad_storage: c, ad_user_data: c, ad_personalization: c, analytics_storage: c });
+      } catch (e) {}
+    })();
+  </script>
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -843,6 +856,9 @@
       color: rgba(255, 255, 255, 0.25);
       margin-bottom: 4px;
     }
+
+    .footer-legal a { color: rgba(255, 255, 255, 0.45); text-decoration: underline; }
+    .footer-legal a:hover { color: var(--orange); }
 
     /* WHATSAPP FLOAT */
     .wa-float {
@@ -1694,6 +1710,7 @@
       <p>© 2026 Mariana Lyrio Odontologia · Rua Dr. Raphaela Maria Bruno, 70 · Sala 102 · Jardim Jalisco · Resende-RJ
       </p>
       <p>Dentista em Resende-RJ · Alinhadores SouSmile · Clareamento · Limpeza · Restaurações · CRO-RJ 054800</p>
+      <p class="footer-legal"><a href="https://doutoramarianalyrio.com.br/politica-de-privacidade/">Política de Privacidade</a> · <a href="#preferencias-cookies" data-cookie-prefs>Preferências de cookies</a></p>
     </div>
   </footer>
 
@@ -1812,7 +1829,7 @@
     })();
   </script>
   <!-- Medição (Google Tag Manager) e texto do WhatsApp conforme a origem da visita -->
-  <script src="/js/medicao.js?v=1" defer></script>
+  <script src="/js/medicao.js?v=2" defer></script>
 </body>
 
 </html>

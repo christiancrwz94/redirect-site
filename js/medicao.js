@@ -41,6 +41,7 @@
   };
   function ehWhatsApp(a) { return /(^|\/\/)(api\.)?wa\.me\//i.test(a.getAttribute('href') || ''); }
   function ajustaWhatsApp(a) {
+    if (a.hasAttribute('data-wa-fixo')) return; // links com texto próprio (ex.: dúvida sobre privacidade)
     try {
       var u = new URL(a.href);
       if (!a.hasAttribute('data-wa-texto')) a.setAttribute('data-wa-texto', u.searchParams.get('text') || '');
@@ -130,6 +131,68 @@
     io.observe(sec);
   }
 
-  function inicia() { ajustaTodos(); rolaAteServico(); observaDepoimentos(); }
+  /* ---------- 7. Aviso de cookies (Consent Mode v2) ----------
+   * O consentimento padrão e a escolha salva são aplicados no <head>, antes do GTM.
+   * Aqui fica só o aviso, os botões e o aviso para o Microsoft Clarity. */
+  var CHAVE_CONSENT = 'ml_consent';
+  function escolhaSalva() {
+    try { var c = localStorage.getItem(CHAVE_CONSENT); return c === 'granted' || c === 'denied' ? c : null; } catch (e) { return null; }
+  }
+  function avisaClarity(c, tentativas) {
+    if (w.clarity) { w.clarity('consentv2', { ad_Storage: c, analytics_Storage: c }); return; }
+    if (tentativas > 0) setTimeout(function () { avisaClarity(c, tentativas - 1); }, 1000);
+  }
+  function aplicaEscolha(c) {
+    try { localStorage.setItem(CHAVE_CONSENT, c); } catch (e) { /* vale só para esta página */ }
+    w.gtag = w.gtag || function () { w.dataLayer.push(arguments); };
+    w.gtag('consent', 'update', { ad_storage: c, ad_user_data: c, ad_personalization: c, analytics_storage: c });
+    avisaClarity(c, 5);
+    push({ event: 'consentimento_atualizado', escolha: c });
+  }
+  var aviso = null;
+  function mostraAviso() {
+    if (!aviso) {
+      var css = d.createElement('style');
+      css.textContent =
+        '.ml-cookies{position:fixed;z-index:950;left:24px;bottom:calc(var(--ml-barra,0px) + 16px);width:min(520px,calc(100% - 48px));' +
+        'background:#1C1C1C;color:rgba(255,255,255,.88);border-radius:18px;padding:16px 18px;box-shadow:0 10px 34px rgba(0,0,0,.28);' +
+        "font-family:'Outfit',sans-serif;font-size:.84rem;line-height:1.5}" +
+        '.ml-cookies[hidden]{display:none}' +
+        '.ml-cookies p{margin:0 0 12px;color:rgba(255,255,255,.88);font-size:inherit;line-height:inherit}.ml-cookies a{color:#F2A882;text-decoration:underline}' +
+        '.ml-cookies-btns{display:flex;gap:10px}' +
+        ".ml-cookies-btns button{flex:1;min-height:44px;border-radius:50px;border:1px solid rgba(255,255,255,.5);background:transparent;color:#fff;font:500 .86rem 'Outfit',sans-serif;cursor:pointer}" +
+        '.ml-cookies-btns button:hover,.ml-cookies-btns button:focus-visible{background:rgba(255,255,255,.12)}' +
+        '@media(max-width:768px){.ml-cookies{left:12px;width:calc(100% - 24px);bottom:calc(var(--ml-barra,0px) + 10px);padding:14px 14px 12px;font-size:.8rem}}';
+      d.head.appendChild(css);
+      aviso = d.createElement('div');
+      aviso.className = 'ml-cookies';
+      aviso.setAttribute('role', 'region');
+      aviso.setAttribute('aria-label', 'Aviso de cookies');
+      aviso.innerHTML = '<p>Usamos cookies para medir o uso do site e, com sua permissão, para melhorar nossos anúncios. ' +
+        '<a href="https://doutoramarianalyrio.com.br/politica-de-privacidade/">Política de Privacidade</a></p>' +
+        '<div class="ml-cookies-btns"><button type="button" data-consent="denied">Recusar</button>' +
+        '<button type="button" data-consent="granted">Aceitar</button></div>';
+      aviso.addEventListener('click', function (e) {
+        var b = e.target.closest && e.target.closest('[data-consent]');
+        if (!b) return;
+        aplicaEscolha(b.getAttribute('data-consent'));
+        aviso.hidden = true;
+      });
+      d.body.appendChild(aviso);
+    }
+    aviso.hidden = false;
+  }
+  d.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('[data-cookie-prefs]') : null;
+    if (!a) return;
+    e.preventDefault();
+    mostraAviso();
+  });
+  function iniciaCookies() {
+    var c = escolhaSalva();
+    if (c) avisaClarity(c, 15); else mostraAviso();
+  }
+
+  function inicia() { ajustaTodos(); rolaAteServico(); observaDepoimentos(); iniciaCookies(); }
   if (d.readyState === 'loading') d.addEventListener('DOMContentLoaded', inicia); else inicia();
 })();

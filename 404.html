@@ -2,6 +2,19 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+  <!-- Consentimento de cookies (Consent Mode v2): precisa vir ANTES do Google Tag Manager -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'granted', wait_for_update: 500 });
+    gtag('set', 'url_passthrough', true);
+    (function () {
+      try {
+        var c = localStorage.getItem('ml_consent');
+        if (c === 'granted' || c === 'denied') gtag('consent', 'update', { ad_storage: c, ad_user_data: c, ad_personalization: c, analytics_storage: c });
+      } catch (e) {}
+    })();
+  </script>
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -20,6 +33,6 @@
   <!-- End Google Tag Manager (noscript) -->
   <p>Redirecionando para <a href="https://doutoramarianalyrio.com.br/">Mariana Lyrio Odontologia</a>...</p>
   <!-- Medição (Google Tag Manager) e texto do WhatsApp conforme a origem da visita -->
-  <script src="/js/medicao.js?v=1" defer></script>
+  <script src="/js/medicao.js?v=2" defer></script>
 </body>
 </html>
