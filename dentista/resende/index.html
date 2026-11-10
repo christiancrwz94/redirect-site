@@ -4,6 +4,13 @@
 <head>
   <base href="https://doutoramarianalyrio.com.br/">
   <meta charset="UTF-8">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-W5JPZZMC');</script>
+  <!-- End Google Tag Manager -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dra. Mariana Lyrio · Dentista em Resende-RJ</title>
   <meta name="description"
@@ -1261,6 +1268,10 @@
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W5JPZZMC"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
   <!-- NAV -->
   <nav id="nav">
@@ -1799,6 +1810,17 @@
       window.addEventListener('scroll', draw, { passive: true });
       window.addEventListener('resize', draw);
     })();
+  </script>
+  <!-- Evento de clique no WhatsApp para o Google Tag Manager -->
+  <script>
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest ? e.target.closest('a[href*="wa.me"]') : null;
+      if (!a) return;
+      var nome = a.id || (a.textContent || '').replace(/\s+/g, ' ').trim() ||
+        a.getAttribute('aria-label') || a.getAttribute('title') || 'whatsapp';
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'clique_whatsapp', botao: nome });
+    });
   </script>
 </body>
 
