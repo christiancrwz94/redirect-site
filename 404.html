@@ -19,16 +19,7 @@
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
   <p>Redirecionando para <a href="https://doutoramarianalyrio.com.br/">Mariana Lyrio Odontologia</a>...</p>
-  <!-- Evento de clique no WhatsApp para o Google Tag Manager -->
-  <script>
-    document.addEventListener('click', function (e) {
-      var a = e.target.closest ? e.target.closest('a[href*="wa.me"]') : null;
-      if (!a) return;
-      var nome = a.id || (a.textContent || '').replace(/\s+/g, ' ').trim() ||
-        a.getAttribute('aria-label') || a.getAttribute('title') || 'whatsapp';
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ event: 'clique_whatsapp', botao: nome });
-    });
-  </script>
+  <!-- Medição (Google Tag Manager) e texto do WhatsApp conforme a origem da visita -->
+  <script src="/js/medicao.js?v=1" defer></script>
 </body>
 </html>
