@@ -10,4 +10,4 @@ Allow: /
 User-agent: AdsBot-Google-Mobile
 Allow: /
 
-Sitemap: https://doutoramarianalyrio.com.br/
+Sitemap: https://doutoramarianalyrio.com.br/sitemap.xml
