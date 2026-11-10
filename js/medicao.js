@@ -92,12 +92,44 @@
   d.addEventListener('click', function (e) {
     var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
     if (!a) return;
+    var href = a.getAttribute('href') || '';
     if (ehWhatsApp(a)) {
       ajustaWhatsApp(a); // vale também para links que aparecerem depois
       push({ event: 'clique_whatsapp', botao: nomeBotao(a), servico: servico, origem: origem });
+    } else if (/^tel:/i.test(href)) {
+      push({ event: 'clique_telefone', botao: nomeBotao(a) });
+    } else if (/(google\.[a-z.]+\/maps|maps\.google\.|maps\.app\.goo\.gl|goo\.gl\/maps)/i.test(href)) {
+      push({ event: 'clique_mapa', destino: 'google_maps' });
+    } else if (/waze\.com/i.test(href)) {
+      push({ event: 'clique_mapa', destino: 'waze' });
     }
   });
 
-  function inicia() { ajustaTodos(); rolaAteServico(); }
+  /* ---------- 5. Interação com os carrosséis de casos (uma vez por carrossel por visita) ---------- */
+  d.addEventListener('scroll', function (e) {
+    var t = e.target;
+    if (!t || !t.classList || !t.classList.contains('svc-track') || t.scrollLeft < 10) return;
+    var box = t.closest('.svc-media');
+    var nome = (box && box.getAttribute('data-slug')) || 'desconhecido';
+    if (sessao('ml_casos_' + nome)) return;
+    sessao('ml_casos_' + nome, '1');
+    if (t.getAttribute('data-ml-casos')) return; // reserva caso a sessão esteja bloqueada
+    t.setAttribute('data-ml-casos', '1');
+    push({ event: 'interacao_casos', servico: nome });
+  }, { capture: true, passive: true });
+
+  /* ---------- 6. Seção de depoimentos apareceu na tela ---------- */
+  function observaDepoimentos() {
+    var sec = d.querySelector('.depoimentos');
+    if (!sec || !('IntersectionObserver' in w)) return;
+    var io = new IntersectionObserver(function (itens) {
+      if (!itens.some(function (i) { return i.isIntersecting; })) return;
+      io.disconnect();
+      push({ event: 'viu_depoimentos' });
+    }, { threshold: 0.25 });
+    io.observe(sec);
+  }
+
+  function inicia() { ajustaTodos(); rolaAteServico(); observaDepoimentos(); }
   if (d.readyState === 'loading') d.addEventListener('DOMContentLoaded', inicia); else inicia();
 })();
