@@ -1,0 +1,54 @@
+# Confere, depois de cada publicação, se todas as páginas do site continuam com o
+# Google Tag Manager e com o evento de clique no WhatsApp. Se faltar algo, falha
+# (aparece em vermelho na aba Actions e o GitHub avisa por e-mail).
+name: Verificar medição do site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      SITE: https://doutoramarianalyrio.com.br
+      PAGINAS: "/ /dentista/resende/ /404.html /politica-de-privacidade/"
+    steps:
+      - name: Aguardar a publicação do GitHub Pages (cerca de 2 minutos)
+        run: sleep 120
+
+      - name: Baixar as páginas publicadas e conferir
+        shell: bash
+        run: |
+          verificar() {
+            local erros=0 n=$RANDOM
+            for p in $PAGINAS; do
+              local html
+              if ! html=$(curl -fsSL --max-time 30 "$SITE$p?verificacao=$n"); then
+                echo "::warning::$p: não foi possível baixar a página"; erros=1; continue
+              fi
+              grep -q "GTM-W5JPZZMC" <<<"$html" || { echo "::warning::$p: sem o Google Tag Manager (GTM-W5JPZZMC)"; erros=1; }
+              grep -q "gtag('consent', 'default'" <<<"$html" || { echo "::warning::$p: sem o consentimento padrão antes do GTM"; erros=1; }
+              grep -q "/js/medicao.js" <<<"$html" || { echo "::warning::$p: sem o script de medição (/js/medicao.js)"; erros=1; }
+            done
+            local js
+            if js=$(curl -fsSL --max-time 30 "$SITE/js/medicao.js?verificacao=$n"); then
+              grep -q "clique_whatsapp" <<<"$js" || { echo "::warning::/js/medicao.js: sem o evento clique_whatsapp"; erros=1; }
+            else
+              echo "::warning::não foi possível baixar /js/medicao.js"; erros=1
+            fi
+            return $erros
+          }
+          # Algumas tentativas, para dar tempo ao cache do GitHub Pages (até 10 minutos).
+          for tentativa in 1 2 3 4 5; do
+            if verificar; then echo "Tudo certo: todas as páginas têm o GTM e o clique_whatsapp."; exit 0; fi
+            echo "Tentativa $tentativa falhou; nova tentativa em 2 minutos."
+            sleep 120
+          done
+          echo "::error::Medição ausente em alguma página do site. Veja os avisos acima."
+          exit 1
