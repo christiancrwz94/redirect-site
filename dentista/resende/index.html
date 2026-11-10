@@ -407,6 +407,8 @@
       scrollbar-width: none;
     }
 
+    .dep-arrow { display: none; }
+
     .dep-carousel::-webkit-scrollbar {
       display: none;
     }
@@ -1197,6 +1199,13 @@
       .dep-header { margin-bottom: 24px; }
       .dep-carousel { padding-bottom: 10px; }
       .dep-dots { margin-top: 12px; }
+      /* setas para passar as avaliacoes (so na web), nas margens ao lado dos cards */
+      .dep-arrow { display: flex; position: absolute; top: calc(50% - 5px); transform: translateY(-50%); width: 44px; height: 44px; padding: 0; border-radius: 50%; border: 1px solid var(--border); background: #fff; color: var(--dark); box-shadow: 0 6px 18px rgba(28,28,28,0.10); cursor: pointer; align-items: center; justify-content: center; transition: background .2s ease, color .2s ease, opacity .2s ease; z-index: 2; }
+      .dep-arrow:hover { background: var(--orange); color: #fff; border-color: var(--orange); }
+      .dep-arrow svg { width: 18px; height: 18px; display: block; }
+      .dep-arrow.p { left: calc(-1 * min(var(--wrap) - 2px, 64px)); }
+      .dep-arrow.n { right: calc(-1 * min(var(--wrap) - 2px, 64px)); }
+      .dep-arrow:disabled { opacity: 0.35; cursor: default; pointer-events: none; }
 
       /* Quem somos: texto a esquerda, foto a direita */
       .sobre { padding-top: 52px; padding-bottom: 32px; }
@@ -1403,7 +1412,7 @@
           <div class="dep-autor">
             <div class="dep-avatar">R</div>
             <div>
-              <div class="dep-nome">Raquel Campedeli Correa</div>
+              <div class="dep-nome">Raquel Correa</div>
               <div class="dep-trat">Google Maps · 8 meses atrás</div>
             </div>
           </div>
@@ -1414,7 +1423,7 @@
           <div class="dep-autor">
             <div class="dep-avatar">M</div>
             <div>
-              <div class="dep-nome">Maria Elisa Elisei</div>
+              <div class="dep-nome">Maria Elisei</div>
               <div class="dep-trat">Google Maps · 5 meses atrás</div>
             </div>
           </div>
@@ -1447,7 +1456,7 @@
           <div class="dep-autor">
             <div class="dep-avatar">M</div>
             <div>
-              <div class="dep-nome">Maria Vitória Bruno Alves</div>
+              <div class="dep-nome">Maria Alves</div>
               <div class="dep-trat">Google Maps · 7 meses atrás</div>
             </div>
           </div>
@@ -1502,7 +1511,7 @@
           <div class="dep-autor">
             <div class="dep-avatar">T</div>
             <div>
-              <div class="dep-nome">Talita Santana Dinato</div>
+              <div class="dep-nome">Talita Dinato</div>
               <div class="dep-trat">Google Maps · 1 ano atrás</div>
             </div>
           </div>
@@ -1513,7 +1522,7 @@
           <div class="dep-autor">
             <div class="dep-avatar">A</div>
             <div>
-              <div class="dep-nome">Alexandre M Braga</div>
+              <div class="dep-nome">Alexandre Braga</div>
               <div class="dep-trat">Google Maps · 1 ano atrás</div>
             </div>
           </div>
@@ -1530,6 +1539,8 @@
           </div>
         </div>
       </div>
+      <button type="button" class="dep-arrow p" id="depPrev" aria-label="Avaliações anteriores"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 5 8 12 15 19"/></svg></button>
+      <button type="button" class="dep-arrow n" id="depNext" aria-label="Próximas avaliações"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 5 16 12 9 19"/></svg></button>
       <div class="dep-dots" id="depDots"></div>
     </div>
   </section>
@@ -1800,6 +1811,20 @@
       const index = Math.round(carousel.scrollLeft / (cards[0].offsetWidth + 16));
       document.querySelectorAll('.dep-dot').forEach((d, i) => d.classList.toggle('active', i === index));
     }, { passive: true });
+    // Setas das avaliacoes (aparecem so na web)
+    (function () {
+      const prev = document.getElementById('depPrev'), next = document.getElementById('depNext');
+      const step = () => cards[0].offsetWidth + 16;
+      const ends = () => {
+        prev.disabled = carousel.scrollLeft <= 4;
+        next.disabled = carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 4;
+      };
+      prev.addEventListener('click', () => carousel.scrollBy({ left: -step(), behavior: 'smooth' }));
+      next.addEventListener('click', () => carousel.scrollBy({ left: step(), behavior: 'smooth' }));
+      carousel.addEventListener('scroll', ends, { passive: true });
+      window.addEventListener('resize', ends);
+      ends();
+    })();
 
     // Carrosseis de casos dentro de cada tratamento
     (function () {
@@ -1811,7 +1836,7 @@
         for (let i = 1; i <= n; i++) {
           const d = document.createElement('div'); d.className = 'svc-slide';
           const im = document.createElement('img');
-          const url = 'img/casos/' + slug + '/' + i + '.webp?v=4'; im.width = 800; im.height = 1000;
+          const url = 'img/casos/' + slug + '/' + i + '.webp?v=6'; im.width = 800; im.height = 1000;
           if (i === 1) im.src = url; else im.dataset.src = url; // as outras só ao navegar
           im.loading = 'lazy'; im.decoding = 'async';
           im.alt = 'Início e fim de ' + label.toLowerCase() + ', caso ' + i + ' de ' + n;
