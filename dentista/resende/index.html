@@ -1293,6 +1293,34 @@
     @keyframes estrelasBrilho { 0%, 60% { background-position: 100% 0; } 90%, 100% { background-position: 0 0; } }
     @media (prefers-reduced-motion: reduce) { .btn-primary, .btn-primary::after, .nav-logo::after, .nav-logo img, .hero-proof .stars { animation: none; } }
 
+    /* CTA de WhatsApp so no celular (ate 768px): botao grande na capa que, quando a pessoa rola a pagina,
+       encolhe e voa ate o canto direito virando a bolinha (e volta ao topo vira botao de novo).
+       O espaco do botao fica reservado na capa (.wa-hero-slot), entao nada na pagina pula. */
+    .wa-hero-slot { display: none; }
+    @media(max-width:768px) {
+      .wa-float { display: none !important; }
+      .wa-hero-slot { display: block; grid-column: 1 / -1; grid-row: 4; width: calc(100vw - 32px); height: 50px; margin: 0 calc(50% - 50vw + 16px) min(6px, 1.5vw); }
+      .wa-hero { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; height: 100%; padding: 0 16px; border-radius: 50px; overflow: hidden; background: linear-gradient(180deg, #2BD66C 0%, #1AAE52 100%); border: 1px solid rgba(255,255,255,0.22); color: #fff; font-size: 1.02rem; font-weight: 600; letter-spacing: 0.01em; text-shadow: 0 1px 2px rgba(0,60,25,0.35); text-decoration: none; white-space: nowrap; box-shadow: 0 10px 26px -6px rgba(37,211,102,0.55), inset 0 1px 0 rgba(255,255,255,0.35); -webkit-tap-highlight-color: transparent; }
+      .wa-hero:active { filter: brightness(0.95); }
+      .wa-hero svg { width: 23px; height: 23px; flex: none; filter: drop-shadow(0 1px 2px rgba(0,60,25,0.3)); transform-origin: 50% 50%; animation: waHeroIcone 4s ease-in-out 1.5s infinite; }
+      /* bolinha no canto direito (mesmo lugar da bolinha antiga) */
+      .wa-hero.bolinha { position: fixed; z-index: 888; right: 24px; bottom: 24px; width: 56px; height: 56px; padding: 0; gap: 0; box-shadow: 0 4px 20px rgba(37,211,102,0.45), inset 0 1px 0 rgba(255,255,255,0.35); transition: bottom .3s ease; }
+      .wa-hero.bolinha svg { width: 28px; height: 28px; }
+      .wa-hero.bolinha .wa-hero-txt, .wa-hero.voando .wa-hero-txt { display: none; }
+      /* com o aviso de cookies aberto, a bolinha sobe para ficar acima dele */
+      html.ml-cookies-aberto .wa-hero.bolinha { bottom: calc(var(--ml-cookies-h, 140px) + 22px); }
+      /* espaco no fim da pagina para a bolinha nao cobrir o rodape (endereco e "Preferencias de cookies") */
+      footer { padding-bottom: calc(24px + 56px + env(safe-area-inset-bottom)); }
+      /* icone do WhatsApp: a cada 4 s da um leve balanco, como telefone tocando */
+      /* botoes "Agendar agora" (Sobre) e "Quero agendar minha consulta" (final): mesmo visual do botao verde da capa */
+      .sobre-inner .btn-primary, .cta-final-inner .btn-primary { background: linear-gradient(180deg, #2BD66C 0%, #1AAE52 100%); border: 1px solid rgba(255,255,255,0.22); color: #fff; font-size: 1.02rem; font-weight: 600; letter-spacing: 0.01em; text-shadow: 0 1px 2px rgba(0,60,25,0.35); padding: 0 26px; min-height: 50px; gap: 10px; box-shadow: 0 10px 26px -6px rgba(37,211,102,0.55), inset 0 1px 0 rgba(255,255,255,0.35); animation: none; -webkit-tap-highlight-color: transparent; }
+      .sobre-inner .btn-primary::after, .cta-final-inner .btn-primary::after { display: none; }
+      .sobre-inner .btn-primary:active, .cta-final-inner .btn-primary:active { transform: none; filter: brightness(0.95); }
+      .sobre-inner .btn-primary svg, .cta-final-inner .btn-primary svg { width: 23px; height: 23px; flex: none; filter: drop-shadow(0 1px 2px rgba(0,60,25,0.3)); transform-origin: 50% 50%; animation: waHeroIcone 4s ease-in-out 1.5s infinite; }
+      @media (prefers-reduced-motion: reduce) { .sobre-inner .btn-primary svg, .cta-final-inner .btn-primary svg { animation: none; } }
+      @keyframes waHeroIcone { 0%, 76%, 100% { transform: rotate(0) scale(1); } 80% { transform: rotate(-14deg) scale(1.12); } 84% { transform: rotate(12deg) scale(1.12); } 88% { transform: rotate(-8deg) scale(1.08); } 92% { transform: rotate(4deg) scale(1.04); } 96% { transform: rotate(0) scale(1); } }
+      @media (prefers-reduced-motion: reduce) { .wa-hero svg { animation: none; } }
+    }
   </style>
 </head>
 
@@ -1323,6 +1351,7 @@
       <div class="hero-tag">Dentista em Resende - RJ</div>
       <h1 class="sr-only">Dra. Mariana Lyrio, dentista em Resende-RJ</h1>
       <p class="hero-sub">Alinhadores invisíveis SouSmile, clareamento dental, limpeza e restaurações estéticas, com atendimento de urgência e cuidado de verdade.</p>
+      <div class="wa-hero-slot"><a href="https://wa.me/5524998424278?text=Ol%C3%A1!%20Vi%20o%20site%20e%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o." class="wa-hero" id="waHero" data-cta="hero_mobile" data-botao="hero_mobile" target="_blank" rel="noopener" aria-label="Agendar pelo WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.524 5.855L.057 23.882l6.19-1.438A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.371l-.36-.214-3.732.867.936-3.423-.234-.373A9.818 9.818 0 1112 21.818z"/></svg><span class="wa-hero-txt">Agendar pelo WhatsApp</span></a></div>
       <div class="hero-actions">
         <div class="hero-proof">
           <span class="stars">★★★★★</span>
@@ -1743,6 +1772,67 @@
   <script>
     // WhatsApp float
     setTimeout(() => document.getElementById('waFloat').classList.add('visible'), 3000);
+
+    // CTA de WhatsApp do celular: evento proprio por local do botao (a conversao continua vindo do
+    // clique_whatsapp que o js/medicao.js ja dispara em todo link do WhatsApp; nada duplicado)
+    document.querySelectorAll('a[data-cta]').forEach(a => a.addEventListener('click', () => {
+      (window.dataLayer = window.dataLayer || []).push({ event: 'whatsapp_click', cta_location: a.getAttribute('data-cta') });
+    }));
+    // Botao da capa vira bolinha ao rolar (e volta a ser botao no topo), voando entre os dois lugares
+    (() => {
+      const btn = document.getElementById('waHero');
+      if (!btn) return;
+      const celular = matchMedia('(max-width:768px)'), calmo = matchMedia('(prefers-reduced-motion: reduce)');
+      // vira bolinha so quando a foto inteira do primeiro tratamento (Restauracoes Esteticas) ja apareceu na tela
+      const foto = document.querySelector('.servicos .svc-media');
+      let bolinha = false, voando = false;
+      const marca = (onde) => { btn.setAttribute('data-cta', onde); btn.setAttribute('data-botao', onde); };
+      // O voo e feito quadro a quadro mirando o destino ATUAL: se a pessoa continua rolando durante a
+      // animacao, o botao acompanha o lugar dele na capa e chega exatamente onde deve (sem pulo no fim).
+      const slot = btn.parentElement;
+      const perto = (r) => ({ left: r.left, width: r.width, height: r.height, top: Math.max(r.top, -r.height - 12) });
+      const suave = (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      const txt = btn.querySelector('.wa-hero-txt');
+      // volta = true: bolinha voltando a ser botao; a frase cresce junto com o balao (icone e frase sempre juntos)
+      const voa = (de, alvo, volta) => {
+        voando = true;
+        if (!volta) btn.classList.add('voando');
+        const larguraTxt = volta ? txt.scrollWidth : 0;
+        btn.style.cssText = 'position:fixed;z-index:888;margin:0;right:auto;bottom:auto;transition:none';
+        if (volta) txt.style.cssText = 'overflow:hidden;max-width:0;opacity:0';
+        const t0 = performance.now(), dur = 700;
+        const passo = (agora) => {
+          const t = Math.min(1, (agora - t0) / dur), k = suave(t), a = alvo();
+          const v = (x, y) => (x + (y - x) * k) + 'px';
+          Object.assign(btn.style, { top: v(de.top, a.top), left: v(de.left, a.left), width: v(de.width, a.width), height: v(de.height, a.height), gap: (volta ? 10 * k : 0) + 'px' });
+          if (volta) { txt.style.maxWidth = (larguraTxt * k) + 'px'; txt.style.opacity = Math.min(1, k * 1.4); }
+          if (t < 1) return requestAnimationFrame(passo);
+          btn.style.cssText = ''; txt.style.cssText = ''; btn.classList.remove('voando'); voando = false; confere();
+        };
+        requestAnimationFrame(passo);
+      };
+      const confere = () => {
+        if (voando) return;
+        const quer = celular.matches && !!foto && foto.getBoundingClientRect().bottom <= window.innerHeight;
+        if (quer === bolinha) return;
+        const de = perto(btn.getBoundingClientRect());
+        bolinha = quer;
+        btn.classList.toggle('bolinha', quer);
+        marca(quer ? 'bolinha_mobile' : 'hero_mobile');
+        if (calmo.matches || !celular.matches) return;
+        if (quer) {
+          // destino: canto direito, medido a partir da borda de baixo (acompanha a barra do navegador do celular)
+          const f = btn.getBoundingClientRect(), baixo = window.innerHeight - f.bottom, dir = window.innerWidth - f.right;
+          voa(de, () => ({ left: window.innerWidth - dir - f.width, top: window.innerHeight - baixo - f.height, width: f.width, height: f.height }));
+        } else {
+          // destino: o lugar reservado na capa, conferido a cada quadro
+          voa(de, () => perto(slot.getBoundingClientRect()), true);
+        }
+      };
+      window.addEventListener('scroll', confere, { passive: true });
+      window.addEventListener('resize', confere);
+      confere();
+    })();
 
     // Nav hide/show
     let lastScroll = 0;
