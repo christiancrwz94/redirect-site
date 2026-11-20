@@ -17,7 +17,7 @@
   }
 
   /* ---------- 1. Origem da visita (sitelink e anúncio), guardada na sessão ---------- */
-  var CHAVES = ['utm_content', 'gclid', 'gbraid', 'wbraid', 'gad_source'];
+  var CHAVES = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'gclid', 'gbraid', 'wbraid', 'gad_source'];
   var params = null;
   try { params = new URLSearchParams(w.location.search); } catch (e) { /* navegador antigo */ }
   var ctx = {};
@@ -29,7 +29,11 @@
   });
   var servico = String(ctx.utm_content || '').toLowerCase().replace(/[^a-z0-9_-]/g, '').slice(0, 40) || 'geral';
   var anuncio = !!(ctx.gclid || ctx.gbraid || ctx.wbraid || ctx.gad_source);
-  var origem = anuncio ? 'google_ads' : 'organico';
+  var fonte = String(ctx.utm_source || '').toLowerCase().replace(/[^a-z0-9_.-]/g, '').slice(0, 40);
+  var origem = anuncio ? 'google_ads' : (fonte || 'organico');
+  // Rede social de onde a pessoa veio (pelo utm_source do link), para aparecer na mensagem do WhatsApp
+  var REDES = { instagram: 'Instagram', ig: 'Instagram', facebook: 'Facebook', fb: 'Facebook', tiktok: 'TikTok', youtube: 'YouTube' };
+  var rede = REDES[fonte] || '';
 
   /* ---------- 2. Texto pré-preenchido do WhatsApp ---------- */
   var MENSAGENS = {
@@ -45,8 +49,10 @@
     try {
       var u = new URL(a.href);
       if (!a.hasAttribute('data-wa-texto')) a.setAttribute('data-wa-texto', u.searchParams.get('text') || '');
-      var texto = MENSAGENS[servico] || a.getAttribute('data-wa-texto');
+      // data-wa-contexto: botão de um tratamento específico, que mantém a própria mensagem
+      var texto = (a.hasAttribute('data-wa-contexto') ? '' : MENSAGENS[servico]) || a.getAttribute('data-wa-texto');
       if (anuncio) texto += ' (vim pelo Google)';
+      else if (rede) texto += ' (vim pelo ' + rede + ')';
       a.href = u.origin + u.pathname + '?text=' + encodeURIComponent(texto);
     } catch (e) { /* mantém o link original */ }
   }
@@ -59,7 +65,7 @@
     sl_limpeza: '.svc-media[data-slug="limpeza"]',
     sl_clareamento: '.svc-media[data-slug="clareamento"]',
     sl_alinhadores: '.svc-media[data-slug="sousmile"]',
-    sl_restauracoes: '.svc-media[data-slug="restauracoes"]',
+    sl_restauracoes: '.svc-media[data-slug="esteticas"]',
     sl_avaliacoes: '.depoimentos'
   };
   function rolaAteServico() {
@@ -94,9 +100,12 @@
     var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
     if (!a) return;
     var href = a.getAttribute('href') || '';
+    var tratamento = a.getAttribute('data-tratamento');
+    if (tratamento) push({ event: 'clique_tratamento', tratamento: tratamento, acao: ehWhatsApp(a) ? 'whatsapp' : 'saiba_mais' });
     if (ehWhatsApp(a)) {
       ajustaWhatsApp(a); // vale também para links que aparecerem depois
-      push({ event: 'clique_whatsapp', botao: nomeBotao(a), servico: servico, origem: origem });
+      push({ event: 'clique_whatsapp', botao: nomeBotao(a), servico: servico, origem: origem,
+        utm_source: ctx.utm_source || '', utm_medium: ctx.utm_medium || '', utm_campaign: ctx.utm_campaign || '' });
     } else if (/^tel:/i.test(href)) {
       push({ event: 'clique_telefone', botao: nomeBotao(a) });
     } else if (/(google\.[a-z.]+\/maps|maps\.google\.|maps\.app\.goo\.gl|goo\.gl\/maps)/i.test(href)) {
@@ -154,7 +163,7 @@
     if (!aviso) {
       var css = d.createElement('style');
       css.textContent =
-        '.ml-cookies{position:fixed;z-index:950;left:24px;bottom:16px;width:min(520px,calc(100% - 48px));' +
+        '.ml-cookies{position:fixed;z-index:950;right:24px;bottom:16px;width:min(520px,calc(100% - 48px));' +
         'background:#1C1C1C;color:rgba(255,255,255,.88);border-radius:18px;padding:16px 18px;box-shadow:0 10px 34px rgba(0,0,0,.28);' +
         "font-family:'Outfit',sans-serif;font-size:.84rem;line-height:1.5}" +
         '.ml-cookies[hidden]{display:none}' +
@@ -162,7 +171,9 @@
         '.ml-cookies-btns{display:flex;gap:10px}' +
         ".ml-cookies-btns button{flex:1;min-height:44px;border-radius:50px;border:1px solid rgba(255,255,255,.5);background:transparent;color:#fff;font:500 .86rem 'Outfit',sans-serif;cursor:pointer}" +
         '.ml-cookies-btns button:hover,.ml-cookies-btns button:focus-visible{background:rgba(255,255,255,.12)}' +
-        '@media(max-width:768px){.ml-cookies{left:12px;width:calc(100% - 24px);bottom:10px;padding:14px 14px 12px;font-size:.8rem}html.ml-cookies-aberto .wa-float{bottom:calc(var(--ml-cookies-h,0px) + 22px)}}';
+        'html.ml-cookies-aberto .wa-float{bottom:calc(var(--ml-cookies-h,0px) + 32px)}' +
+        '@media(min-width:769px) and (max-width:1023px){.ml-cookies{width:400px}}' +
+        '@media(max-width:768px){.ml-cookies{right:auto;left:12px;width:calc(100% - 24px);bottom:10px;padding:14px 14px 12px;font-size:.8rem}html.ml-cookies-aberto .wa-float{bottom:calc(var(--ml-cookies-h,0px) + 22px)}}';
       d.head.appendChild(css);
       aviso = d.createElement('div');
       aviso.className = 'ml-cookies';
@@ -182,7 +193,7 @@
       d.body.appendChild(aviso);
     }
     aviso.hidden = false;
-    // No celular o aviso ocupa a largura toda: sobe a bolinha do WhatsApp para não ficar coberta
+    // O aviso fica embaixo à direita (no celular, na largura toda): sobe a bolinha do WhatsApp para não ficar coberta
     d.documentElement.style.setProperty('--ml-cookies-h', aviso.offsetHeight + 'px');
     d.documentElement.classList.add('ml-cookies-aberto');
   }

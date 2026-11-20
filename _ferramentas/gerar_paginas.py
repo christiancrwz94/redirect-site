@@ -11,13 +11,13 @@ BASE = '  <base href="https://doutoramarianalyrio.com.br/">\n'
 
 # Trechos do <head> que mudam na página de Resende: (texto do index, texto da página)
 TROCAS = [
-    ('<title>Dentista em Resende-RJ · Clareamento, Limpeza e Alinhadores | Dra. Mariana Lyrio</title>',
+    ('<title>Dentista em Resende-RJ | Dra. Mariana Lyrio Odontologia</title>',
      '<title>Dentista em Resende-RJ · Atendimento de Urgência e Avaliação | Dra. Mariana Lyrio</title>'),
-    ('<meta property="og:title" content="Dentista em Resende-RJ · Clareamento, Limpeza e Alinhadores | Dra. Mariana Lyrio">',
+    ('<meta property="og:title" content="Dentista em Resende-RJ | Dra. Mariana Lyrio Odontologia">',
      '<meta property="og:title" content="Dentista em Resende-RJ · Atendimento de Urgência e Avaliação | Dra. Mariana Lyrio">'),
-    ('content="Dentista em Resende-RJ: clareamento dental, limpeza, alinhador invisível SouSmile e restaurações estéticas. Atendimento de urgência. CRO-RJ 054800.">',
-     'content="Dentista em Resende-RJ no Jardim Jalisco: atendimento de urgência, limpeza, clareamento, restaurações e alinhadores SouSmile. Agende pelo WhatsApp. CRO-RJ 054800.">'),
-    ('<meta property="og:description" content="Dentista em Resende-RJ: clareamento dental, limpeza, alinhador invisível SouSmile e restaurações estéticas. Agende pelo WhatsApp.">',
+    ('<meta name="description"\n    content="Cuide do seu sorriso com a Dra. Mariana Lyrio em Resende-RJ. Atendimento odontológico humanizado, limpeza, clareamento e outros tratamentos. Agende sua avaliação.">',
+     '<meta name="description"\n    content="Dentista em Resende-RJ no Jardim Jalisco: atendimento de urgência, limpeza, clareamento, restaurações e alinhadores SouSmile. Agende pelo WhatsApp. CRO-RJ 054800.">'),
+    ('<meta property="og:description" content="Cuide do seu sorriso com a Dra. Mariana Lyrio em Resende-RJ. Atendimento odontológico humanizado, limpeza, clareamento e outros tratamentos. Agende sua avaliação.">',
      '<meta property="og:description" content="Dentista em Resende-RJ: atendimento de urgência, limpeza, clareamento, restaurações e alinhadores SouSmile. Agende pelo WhatsApp.">'),
     ('<link rel="canonical" href="https://doutoramarianalyrio.com.br/">',
      '<link rel="canonical" href="https://doutoramarianalyrio.com.br/dentista/resende/">'),

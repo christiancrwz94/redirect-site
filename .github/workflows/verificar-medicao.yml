@@ -17,7 +17,7 @@ jobs:
     timeout-minutes: 15
     env:
       SITE: https://doutoramarianalyrio.com.br
-      PAGINAS: "/ /dentista/resende/ /404.html /politica-de-privacidade/"
+      PAGINAS: "/ /dentista/resende/ /404.html /politica-de-privacidade/ /limpeza-dental-resende/ /clareamento-dental-resende/ /alinhadores-transparentes-resende/"
     steps:
       - name: Aguardar a publicação do GitHub Pages (cerca de 2 minutos)
         run: sleep 120
