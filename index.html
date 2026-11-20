@@ -1086,6 +1086,9 @@
     .cc-opts { display: flex; gap: 10px; margin-top: 12px; }
     .cc-opts .cc-gm { border-color: rgba(66,133,244,0.4); }
     .cc-opts .cc-wz { border-color: rgba(51,204,255,0.6); }
+    /* WhatsApp no lugar do Waze so no celular (pedido em 20/11/2026) */
+    .cc-opts .cc-wa { display: none; border-color: rgba(37,211,102,0.55); }
+    @media(max-width:768px) { .cc-opts .cc-wa { display: inline-flex; } .cc-opts .cc-wz { display: none; } }
     .cc-brand { flex-shrink: 0; }
     .loc-map { border-radius: 24px; box-shadow: 0 10px 30px rgba(28,28,28,0.1); }
     .cc-opts a { display: inline-flex; align-items: center; gap: 8px; min-height: 46px; padding: 0 20px 0 14px; border-radius: 50px; border: 1px solid rgba(28,28,28,0.18); background: #fff; color: var(--dark); font-size: 0.88rem; font-weight: 500; text-decoration: none; box-shadow: 0 4px 14px rgba(28,28,28,0.08); }
@@ -1434,10 +1437,19 @@
     /* Celular: um botao de agendamento no fim dos tratamentos (pedido em 20/11/2026) */
     .svc-final { display: none; }
     @media(max-width:768px) { .svc-final { display: flex; justify-content: center; margin-top: 22px; } .svc-final .svc-cta { flex: 0 1 auto; padding: 0 26px; } }
+    /* so o icone do WhatsApp balanca nesse botao */
+    @media(max-width:768px) { .svc-final .svc-cta svg { transform-origin: 50% 50%; animation: waHeroIcone 4s ease-in-out 1.5s infinite; } }
+    @media(max-width:768px) and (prefers-reduced-motion: reduce) { .svc-final .svc-cta svg { animation: none; } }
     /* Revisao geral (20/11/2026) */
+    /* Celular: o botao dos diferenciais voltou, acima do Quem somos (pedido em 20/11/2026) */
     @media(max-width:768px) {
-      /* sem o botao de WhatsApp nos diferenciais */
-      .dif-cta { display: none !important; }
+      .diferenciais .svc-cta.dif-cta { background: var(--orange-btn); border: 0; text-shadow: none; box-shadow: 0 6px 18px rgba(191,79,38,0.3); }
+      .diferenciais .svc-cta.dif-cta:hover { background: var(--orange-btn); }
+      .diferenciais .svc-cta.dif-cta svg { filter: none; transform-origin: 50% 50%; animation: waHeroIcone 4s ease-in-out 1.5s infinite; }
+      /* animacao discreta, a mesma dos botoes laranja do computador: brilho que passa e sombra que respira */
+      .diferenciais .svc-cta.dif-cta { position: relative; overflow: hidden; animation: btnRespira 3.2s ease-in-out infinite; }
+      .diferenciais .svc-cta.dif-cta::after { content: ''; position: absolute; top: 0; bottom: 0; left: -50%; width: 40%; background: linear-gradient(105deg, rgba(255,255,255,0), rgba(255,255,255,0.28), rgba(255,255,255,0)); transform: translateX(0) skewX(-20deg); animation: btnBrilho 4.8s ease-in-out infinite; pointer-events: none; }
+      @media (prefers-reduced-motion: reduce) { .diferenciais .svc-cta.dif-cta, .diferenciais .svc-cta.dif-cta::after, .diferenciais .svc-cta.dif-cta svg { animation: none; } }
     }
     @media(max-width:899px) {
       /* logo branco, como no computador: no topo da capa e no rodape */
@@ -1908,6 +1920,7 @@
       <div class="cc">
         <div class="cc-opts">
           <a href="https://www.google.com/maps/search/?api=1&query=Rua+Dr+Raphaela+Maria+Bruno+70+Jardim+Jalisco+Resende+RJ" target="_blank" rel="noopener" class="cc-gm"><svg class="cc-brand" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><defs><clipPath id="gmp"><path d="M12 1.5a7.5 7.5 0 0 0-7.5 7.5c0 5.4 7.5 13.5 7.5 13.5s7.5-8.100 7.5-13.500A7.5 7.5 0 0 0 12 1.500z"/></clipPath></defs><g clip-path="url(#gmp)"><rect x="0" y="0" width="12" height="9" fill="#34A853"/><rect x="12" y="0" width="12" height="9" fill="#4285F4"/><rect x="0" y="9" width="24" height="3" fill="#FBBC04"/><rect x="0" y="12" width="24" height="12" fill="#EA4335"/></g><circle cx="12" cy="9" r="2.9" fill="#fff"/></svg> Google Maps</a>
+          <a href="https://wa.me/5524998424278?text=Ol%C3%A1!%20Vi%20o%20site%20e%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank" rel="noopener" class="cc-wa" data-botao="localizacao"><svg class="cc-brand" width="20" height="20" viewBox="0 0 24 24" fill="#25D366" aria-hidden="true"><use href="#ico-wa"/></svg>WhatsApp</a>
           <a href="https://waze.com/ul?q=Rua%20Dr.%20Raphaela%20Maria%20Bruno%2070%20Resende%20RJ&navigate=yes" target="_blank" rel="noopener" class="cc-wz"><svg class="cc-brand" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="#33CCFF" d="M12 2.5c-4.7 0-8.5 3.600-8.500 8.100 0 1.600.5 3.100 1.300 4.300-.2 1.300-.6 2.600-1.200 3.600 1.500 0 2.800-.4 3.900-1.100 1.400.7 3 1 4.500 1 4.700 0 8.500-3.600 8.500-8.100S16.700 2.500 12 2.500z"/><circle cx="9.200" cy="10" r="1.100" fill="#1C1C1C"/><circle cx="14.800" cy="10" r="1.100" fill="#1C1C1C"/><path d="M8.800 13c1.800 1.700 4.600 1.700 6.400 0" fill="none" stroke="#1C1C1C" stroke-width="1.300" stroke-linecap="round"/><circle cx="8" cy="19" r="1.700" fill="#1C1C1C"/><circle cx="16" cy="19" r="1.700" fill="#1C1C1C"/></svg> Waze</a>
         </div>
       </div>
